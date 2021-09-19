@@ -5,8 +5,8 @@ Gogen120 Infra repository
 
 **Адреса для подключения**
 
-`bastion_IP = 178.154.223.68`
-`someinternalhost_IP = 10.128.0.25`
+bastion_IP = 178.154.223.68
+someinternalhost_IP = 10.128.0.25
 
 ### Дополнительное задание №1
 
