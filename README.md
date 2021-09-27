@@ -36,3 +36,23 @@ Host someinternalhost
 ### Дополнительное задание №2
 
 Сертификат выдан для https://178.154.223.68.sslip.io/
+
+## Деплой тестового приложения
+
+testapp_IP = 62.84.116.216
+testapp_port = 9292
+
+### Дополнительное задание
+
+Для создания сервера со всем необходимым для запуска тестового приложения можно использовать `startup_script.sh` или следующую команду в CLI:
+
+```bash
+yc compute instance create \
+  --name reddit-app \
+  --hostname reddit-app \
+  --memory=4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --metadata serial-port-enable=1 \
+  --metadata-from-file user-data=./metadata.yml
+```
