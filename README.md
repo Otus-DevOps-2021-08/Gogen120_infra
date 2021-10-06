@@ -56,3 +56,10 @@ yc compute instance create \
   --metadata serial-port-enable=1 \
   --metadata-from-file user-data=./metadata.yml
 ```
+
+## Packer
+
+* Добавлен базовый образ с ruby и mongodb
+* Добавил `variable.json`, в котором содержаться необходимые переменные для образа
+* Добавил bake-образ c запущенным приложением и всеми зависимостями
+* Добавил скрипт `create-reddit-vm.sh` для создания инствнса с готовым приложением из bake-образа
