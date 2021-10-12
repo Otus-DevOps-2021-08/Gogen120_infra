@@ -1,0 +1,11 @@
+cloud_id                 = "<cloud_id>"
+folder_id                = "<folder_id>"
+zone                     = "ru-central1-a"
+image_id                 = "<image_id>"
+public_key_path          = "<public_key_path>"
+private_key_path         = "<private_key_path>"
+subnet_id                = "<subnet_id>"
+service_account_key_file = "key.json"
+listener_port            = 80
+listener_target_port     = 9292
+insinstance_count        = 2
