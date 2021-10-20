@@ -8,4 +8,5 @@ subnet_id                = "<subnet_id>"
 service_account_key_file = "key.json"
 listener_port            = 80
 listener_target_port     = 9292
-insinstance_count        = 2
+app_disk_image           = "reddit-app-base"
+db_disk_image            = "reddit-db-base"
