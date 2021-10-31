@@ -7,7 +7,6 @@ import subprocess
 
 def list_dynamic_invemtory():
     dynamic_inventory = {}
-    all_hosts = []
     output = subprocess.Popen('yc compute instance list --format json', shell=True, stdout=subprocess.PIPE)
     json_output, _ = output.communicate()
     yandex_instnces = json.loads(json_output)
@@ -17,11 +16,6 @@ def list_dynamic_invemtory():
         dynamic_inventory[service_name] = {
             'hosts': [service_ip]
         }
-        all_hosts.append(service_ip)
-
-    dynamic_inventory['all'] = {
-        'hosts': all_hosts
-    }
 
     return dynamic_inventory
 
@@ -33,13 +27,15 @@ def host_dynamic_invemtory():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--list', action='store_true')
-    parser.add_argument('--host', action='store_true')
+    parser.add_argument('--host', action='store')
     args = parser.parse_args()
 
     if args.list:
         dynamic_inventory = list_dynamic_invemtory()
     elif args.host:
         dynamic_inventory = host_dynamic_invemtory()
+    else:
+        dynamic_inventory = {}
 
     with open('inventory.json', 'w') as inventory_file:
         json.dump(dynamic_inventory, inventory_file, indent=2)
