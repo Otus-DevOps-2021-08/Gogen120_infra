@@ -9,7 +9,7 @@ def list_dynamic_invemtory():
     dynamic_inventory = {}
     output = subprocess.Popen('yc compute instance list --format json', shell=True, stdout=subprocess.PIPE)
     json_output, _ = output.communicate()
-    yandex_instnces = json.loads(json_output)
+    yandex_instnces = json.loads(json_output.decode())
     for instance in yandex_instnces:
         service_name = instance['name'].split('-')[-1]
         service_ip = instance['network_interfaces'][0]['primary_v4_address']['one_to_one_nat']['address']
