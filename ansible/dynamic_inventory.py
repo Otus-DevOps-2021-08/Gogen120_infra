@@ -2,17 +2,14 @@
 
 import argparse
 import json
-import subprocess
 
 
 def list_dynamic_invemtory():
+    with open('hosts.json') as host_file:
+        yandex_instnces = json.load(host_file)
+
     dynamic_inventory = {}
-    output = subprocess.Popen('yc compute instance list --format json', shell=True, stdout=subprocess.PIPE)
-    json_output, _ = output.communicate()
-    yandex_instnces = json.loads(json_output.decode())
-    for instance in yandex_instnces:
-        service_name = instance['name'].split('-')[-1]
-        service_ip = instance['network_interfaces'][0]['primary_v4_address']['one_to_one_nat']['address']
+    for service_name, service_ip in yandex_instnces.items():
         dynamic_inventory[service_name] = {
             'hosts': [service_ip]
         }
