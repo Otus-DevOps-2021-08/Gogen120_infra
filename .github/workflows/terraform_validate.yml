@@ -1,0 +1,47 @@
+name: Terraform validate and tflint
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform validate stage
+        id: validate
+        run: terraform validate
+        working-directory: terraform/stage
+
+      - name: Terraform validate prod
+        id: validate
+        run: terraform validate
+        working-directory: terraform/prod
+
+  tflint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v1
+
+      - name: Init TFLint
+        run: tflint --init
+
+      - name: Run TFLint prod
+        run: tflint -f compact
+        working-directory: terraform/prod
+
+      - name: Run TFLint stage
+        run: tflint -f compact
+        working-directory: terraform/stage

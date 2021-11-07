@@ -92,3 +92,20 @@ yc compute instance create \
 * Первоначальный плейбук был разбит на несколько для более удобного управления
 * Переписан скрипт `dynamic_inventory` с использованием `yandexcloud-sdk`, для более удобного получения хостов
 * Заменил bash-скрипты на ansible плейбуки в конфигурационных файлах Packer-а
+
+## Ansible 3
+
+* Созданы шаблоны ролей для конфигурации приложения с помощью `ansible-galaxy`
+* Перенес таски, хендлеры, шаблоны из плейбуков в отдельные роли
+* Создал stage и prod окружения для запуска ансибл плейбуков
+* Определил переменные в `group_vars` для групп хостов
+* Создал отдельные директории для ролей и плейбуков
+* Добавил комьюнити роль `jdauphant.nginx` с помощью `ansible-galaxy`
+* Зашифровал `credential.yml` файлы с помощью `ansible-vault` и ключа `vault.key`
+* Добавил dynamic invemtory для stage и prod окружений
+* В Github Actions добавил джобы для валидации пакера, ансибла и терраформа
+* Добавил бейдж со статусом билда
+
+![Packer Validate](https://github.com/Otus-DevOps-2021-08/Gogen120_infra/actions/workflows/packer_validate.yml/badge.svg)
+![Ansible Lint](https://github.com/Otus-DevOps-2021-08/Gogen120_infra/actions/workflows/ansible_lint.yml/badge.svg)
+![Terraform Validate](https://github.com/Otus-DevOps-2021-08/Gogen120_infra/actions/workflows/terraform_validate.yml/badge.svg)
