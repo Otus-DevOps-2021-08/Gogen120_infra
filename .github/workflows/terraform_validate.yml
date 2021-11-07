@@ -15,10 +15,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - name: Terraform Init
+        id: init-stage
+        run: terraform init
+        working-directory: terraform/stage
+
       - name: Terraform validate stage
         id: validate-stage
         run: terraform validate
         working-directory: terraform/stage
+
+      - name: Terraform Init
+        id: init-prod
+        run: terraform init
+        working-directory: terraform/prod
 
       - name: Terraform validate prod
         id: validate-prod
