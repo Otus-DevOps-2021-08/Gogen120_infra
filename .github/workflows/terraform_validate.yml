@@ -16,12 +16,12 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform validate stage
-        id: validate
+        id: validate-stage
         run: terraform validate
         working-directory: terraform/stage
 
       - name: Terraform validate prod
-        id: validate
+        id: validate-prod
         run: terraform validate
         working-directory: terraform/prod
 
