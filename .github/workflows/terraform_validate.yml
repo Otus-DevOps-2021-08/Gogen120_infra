@@ -17,7 +17,7 @@ jobs:
 
       - name: Terraform Init
         id: init-stage
-        run: terraform init
+        run: terraform init -backend=false
         working-directory: terraform/stage
 
       - name: Terraform validate stage
@@ -27,7 +27,7 @@ jobs:
 
       - name: Terraform Init
         id: init-prod
-        run: terraform init
+        run: terraform init -backend=false
         working-directory: terraform/prod
 
       - name: Terraform validate prod
