@@ -1,0 +1,25 @@
+name: Validate Packer templates
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Validate Template app.json
+        run: packer validate -var-file=packer/variables.json.example packer/app.json
+
+      - name: Validate Template db.json
+        run: packer validate -var-file=packer/variables.json.example packer/db.json
+
+      - name: Validate Template ubuntu16.json
+        run: packer validate -var-file=packer/variables.json.example packer/ubuntu16.json
+
+      - name: Validate Template immutable.json
+        run: packer validate -var-file=packer/variables.json.example packer/immutable.json
