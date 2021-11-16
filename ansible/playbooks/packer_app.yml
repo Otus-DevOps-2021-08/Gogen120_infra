@@ -2,14 +2,5 @@
 - name: Install App dependencies
   hosts: all
   become: true
-  tasks:
-    - name: Install dependencies
-      apt:
-        name: "{{ item }}"
-        state: present
-        update_cache: true
-      loop:
-        - ruby-full
-        - ruby-bundler
-        - build-essential
-        - git
+  roles:
+    - app
