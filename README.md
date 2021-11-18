@@ -109,3 +109,11 @@ yc compute instance create \
 ![Packer Validate](https://github.com/Otus-DevOps-2021-08/Gogen120_infra/actions/workflows/packer_validate.yml/badge.svg)
 ![Ansible Lint](https://github.com/Otus-DevOps-2021-08/Gogen120_infra/actions/workflows/ansible_lint.yml/badge.svg)
 ![Terraform Validate](https://github.com/Otus-DevOps-2021-08/Gogen120_infra/actions/workflows/terraform_validate.yml/badge.svg)
+
+## Ansible 4
+
+* Создан Vagrantfile с описанием 2-х виртуальных машин для локального деплоя приложения
+* Разбил роли `app` и `db` на отдельный подроли для более гибкого управления
+* Для сборки имаджей пакера теперь используются роли `app` и `db` с соответствующими тегами
+* Добавленны сценарии `molecule` для тестирвания инфры
+* Добавлены тесты, написанные с помощью `testinfra`
